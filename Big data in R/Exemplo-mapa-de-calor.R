@@ -10,7 +10,7 @@ library(readr)
 library(tidyverse)
 library(ggcal)
 
-#Criando funções 
+#Criando funções
 
 ##A função getStats seleciona as companhias aéreas, remove os NA's, calcula o número de voos e a quantidade de voos com atraso maior que 10 minutos
 getStats = function(input, pos){
