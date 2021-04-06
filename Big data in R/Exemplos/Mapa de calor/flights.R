@@ -43,7 +43,7 @@ mycols = cols_only(DAY='i', MONTH='i', AIRLINE='c', ARRIVAL_DELAY = 'i')
 
 ##Importando os dados de 10 em 10 mil e executando a função getStats a cada lote de 10 mil
 dados = read_csv_chunked(file.path(path, "flights.csv"),
-                       callback=data frameCallback$new(getStats), #Executa a função getStats a cada lote
+                       callback=DataFrameCallback$new(getStats), #Executa a função getStats a cada lote
                        chunk_size = 1e5, #Seleciona o tamanho de cada lote
                        col_types=mycols) #Colunas de interesse
 
@@ -64,4 +64,4 @@ dados = stats %>% #filtra o data frame, ficamos apenas com a CIA de interesse
 ggcal(dados$Data, dados$Perc) + pal #Cria o mapa de calor no formato de calendário e com a paleta de cores desejada
 }
 
-basecalendário(dados,"US") #Testando a função que cria o mapa de calor com a CIA "US"
+basecalendário(dados,"AA") #Testando a função que cria o mapa de calor com a CIA "US"
