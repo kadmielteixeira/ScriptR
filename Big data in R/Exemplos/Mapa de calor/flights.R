@@ -52,16 +52,20 @@ dados = computeStats(dados) #Recebendo o data frame gerado pela função getStat
 #Criar um mapa de calor em formato de calendário para cada CIA aérea
 
 ##Criando a paleta de cores para o mapa de calor
-pal = scale_fill_gradient(low = "#4575b4", high = "#d73027")
+
+pal = scale_fill_gradient(name = "% de atraso", low = "#4575b4", high = "#d73027")
 
 ##Criando a função que cria o mapa de calor no formato de calendário
+
 basecalendário = function(stats,cia){
-cia = as.character(cia) #Transforma o argumento cia em character
+  cia = as.character(cia) #Transforma o argumento cia em character
   
-dados = stats %>% #filtra o data frame, ficamos apenas com a CIA de interesse
+  dados = stats %>% #filtra o data frame, ficamos apenas com a CIA de interesse
     filter(Cia == cia)
   
-ggcal(dados$Data, dados$Perc) + pal #Cria o mapa de calor no formato de calendário e com a paleta de cores desejada
+  titulo = paste("Calendário com os atrasos da companhia aérea", cia)
+  
+  ggcal(dados$Data, dados$Perc) + pal + ggtitle(titulo)+ theme(legend.title = element_text())#Cria o mapa de calor no formato de calendário e com a paleta de cores desejada
 }
 
-basecalendário(dados,"AA") #Testando a função que cria o mapa de calor com a CIA "US"
+basecalendário(dados,"US") #Testando a função que cria o mapa de calor com a CIA "US"
